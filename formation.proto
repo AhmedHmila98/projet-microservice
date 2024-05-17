@@ -1,0 +1,54 @@
+syntax = "proto3";
+package formation;
+
+// Définition du message Formation
+message Formation {
+
+    string id = 1;
+    string nom = 2;
+    string description = 3;
+    string duree = 4; 
+    string prix = 5; 
+    
+}
+
+// Définition des messages de requête et de réponse pour les méthodes
+message GetFormationRequest {
+    string id = 1; // Utiliser 'id' pour identifier une formation spécifique
+}
+
+message GetFormationResponse {
+    Formation formation = 1;
+}
+
+message SearchFormationsRequest {
+    string query = 1;
+}
+
+message SearchFormationsResponse {
+    repeated Formation formations = 1;
+}
+
+// Définition du message de création de formation
+message CreateFormationRequest {
+    string nom = 1;
+    string description = 2;
+    string duree = 4; 
+    string prix = 5; 
+   
+}
+
+// Définition du message de réponse pour la création de formation
+message CreateFormationResponse {
+    string message = 1;
+}
+
+// Définition du service de formations
+service FormationService {
+
+
+    rpc GetFormation(GetFormationRequest) returns (GetFormationResponse);
+    rpc SearchFormations(SearchFormationsRequest) returns (SearchFormationsResponse);
+    rpc CreateFormation(CreateFormationRequest) returns (CreateFormationResponse); 
+    
+}

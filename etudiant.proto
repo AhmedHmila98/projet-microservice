@@ -1,0 +1,56 @@
+syntax = "proto3";
+package etudiant;
+
+// Définition du message Etudiant
+message Etudiant {
+    
+    string id = 1;
+    string nom = 2;
+    string prenom = 3;
+    string login = 4;
+    string password = 5;
+    string cin = 6;
+   
+}
+
+// Définition des messages de requête et de réponse pour les méthodes
+message GetEtudiantRequest {
+    string etudiant_id = 1;
+}
+
+message GetEtudiantResponse {
+    Etudiant etudiant = 1;
+}
+
+message SearchEtudiantsRequest {
+    string query = 1;
+}
+
+message SearchEtudiantsResponse {
+    repeated Etudiant etudiants = 1;
+}
+
+// Définition du message de création d'étudiant
+message CreateEtudiantRequest {
+    string nom = 1;
+    string prenom = 2;
+    string login = 3;
+    string password = 4;
+    string cin = 5;
+   
+}
+
+
+message CreateEtudiantResponse {
+    string message = 1;
+}
+
+// Définition du service d'étudiants
+service EtudiantService {
+
+    rpc GetEtudiant(GetEtudiantRequest) returns (GetEtudiantResponse);
+    rpc SearchEtudiants(SearchEtudiantsRequest) returns (SearchEtudiantsResponse);
+    rpc CreateEtudiant(CreateEtudiantRequest) returns (CreateEtudiantResponse); 
+   
+   
+}
